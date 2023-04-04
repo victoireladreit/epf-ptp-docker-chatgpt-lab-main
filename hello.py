@@ -31,7 +31,7 @@ def generate_code():
     
     # create code using OpenAI
     completion = openai.Completion.create(
-        engine="davinci-codex",
+        engine="gpt-3.5-turbo",
         prompt=f"Generate {language} code: {content}",
         max_tokens=1024,
         n=1,
