@@ -30,14 +30,8 @@ def generate_code():
     content = request.args.get('content')
     
     # create code using OpenAI
-    completion = openai.Completion.create(
-        engine="gpt-3.5-turbo",
-        prompt=f"Generate {language} code: {content}",
-        max_tokens=1024,
-        n=1,
-        stop=None,
-        temperature=0.7,
+    completion = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[{"role": "user", "content": f"Generate {language} code: {content}"}]
     )
-
-    # return generated code
-    return completion.choices[0].text
+    return completion['choices'][0]['message']['content']
